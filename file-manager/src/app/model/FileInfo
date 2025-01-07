@@ -1,0 +1,7 @@
+export interface FileInfo {
+  id: number;
+  name: string;
+  uploadDate: Date;
+  size: number;
+  type: string;
+}

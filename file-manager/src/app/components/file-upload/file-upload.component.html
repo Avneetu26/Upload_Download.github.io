@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="upload-section">
+    <h1 class="section-title">File Upload and Download</h1>
+
+    <div class="section-title">Upload Your Files</div>
+    <div class="section-description">Secure file upload with instant processing</div>
+
+    <div class="upload-form">
+      <input type="file" (change)="onFileSelected($event)" class="file-input animate-pulse">
+      <button (click)="onUpload()" [disabled]="!selectedFile">Upload</button>
+    </div>
+
+    <!-- <div class="download-section">
+      <input type="number" #fileId placeholder="Enter file ID">
+      <button (click)="onDownload(+fileId.value)">Download</button>
+    </div> -->
+
+    <div class="message" *ngIf="message">
+      {{ message }}
+    </div>
+
+    <div class="files-list"></div>
+      <h2 class="section-title">Uploaded Files</h2>
+
+      <!-- Loading State -->
+      <div class="loading-spinner" *ngIf="isLoading">
+        <div class="spinner"></div>
+      </div>
+
+      <!-- Error Message -->
+      <div class="error-message" *ngIf="message">
+        {{ message }}
+      </div>
+
+      <!-- Files Grid -->
+      <div class="files-grid" *ngIf="!isLoading && files.length > 0">
+        <div class="file-card" *ngFor="let file of files">
+          <div class="file-info">
+            <!-- {{file.}} -->
+            <h3 class="file-name">{{file.fileName}}</h3>
+            <p class="file-meta">
+              <span>ID: {{file.id}}</span>
+            </p>
+          </div>
+          <button (click)="onDownload(+file.id)">Download</button>
+        </div>
+      </div>
+
+      <div class="no-files" *ngIf="!isLoading && files.length === 0">
+        No files uploaded yet
+      </div>
+    </div>
+  </div>
